@@ -183,7 +183,7 @@ class CommandExecutor(
                     val saved = memoryManager.addNote(noteBody)
                     return CommandResult(
                         handled = true,
-                        spokenResponse = "Saved to your local notes: "${saved.content}"",
+                        spokenResponse = "Saved to your local notes: ${saved.content}",
                         badge = "LOCAL NOTES"
                     )
                 }
@@ -206,12 +206,10 @@ class CommandExecutor(
             }
             val formatted = notes.take(5).mapIndexed { index, note ->
                 "${index + 1}. ${note.content} (${note.formattedDate()})"
-            }.joinToString("
-")
+            }.joinToString("\n")
             return CommandResult(
                 handled = true,
-                spokenResponse = "Here are your recent local notes:
-$formatted",
+                spokenResponse = "Here are your recent local notes:\n$formatted",
                 badge = "LOCAL NOTES"
             )
         }
@@ -395,7 +393,7 @@ $formatted",
 
         return CommandResult(
             handled = true,
-            spokenResponse = "I could not find an installed application matching "$targetName" on your phone.",
+            spokenResponse = "I could not find an installed application matching \"$targetName\" on your phone.",
             badge = "APP LAUNCHER"
         )
     }
