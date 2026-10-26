@@ -235,7 +235,7 @@ class MainActivity : AppCompatActivity(), SpeechRecognitionManager.Listener {
 
     override fun onPartialTranscript(partialText: String) {
         runOnUiThread {
-            binding.tvListeningBanner.text = "HEARING: "$partialText""
+            binding.tvListeningBanner.text = "HEARING: ${partialText}"
         }
     }
 
