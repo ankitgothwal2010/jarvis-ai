@@ -1,0 +1,80 @@
+<!--
+    Copyright ©️ 2026 Ankit Gothwal.
+    All rights reserved, subject to applicable third-party license terms.
+
+    Project: JARVIS AI
+    Developer: Ankit Gothwal
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ankit.jarvis">
+
+    <!--
+        PRIVACY & PERMISSIONS POLICY:
+        - RECORD_AUDIO: Required strictly for user-initiated voice commands. No background recording.
+        - MODIFY_AUDIO_SETTINGS: Required for adjusting media volume via voice commands.
+        - SET_ALARM: Required for setting system alarms/timers via clock intents.
+        - QUERY_ALL_PACKAGES: Required on Android 11+ only if the user wants to launch arbitrary installed apps by name.
+          Explicit <queries> blocks are also provided below for standard system intents.
+        - NOTE: INTERNET permission is intentionally OMITTED by default to guarantee 100% offline privacy.
+          If you wish to add an in-app model downloader later, you may add android.permission.INTERNET with explicit user disclosure.
+    -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+
+    <!-- Android 11+ (API 30+) Package Visibility Declarations for Safe Intent Resolution -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+        <intent>
+            <action android:name="android.speech.RecognitionService" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.TTS_SERVICE" />
+        </intent>
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https" />
+        </intent>
+    </queries>
+
+    <application
+        android:allowBackup="false"
+        android:fullBackupContent="false"
+        android:icon="@drawable/ic_jarvis_logo"
+        android:roundIcon="@drawable/ic_jarvis_logo"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.JarvisAI">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false"
+            android:label="@string/title_settings"
+            android:parentActivityName=".MainActivity" />
+
+        <activity
+            android:name=".AboutActivity"
+            android:exported="false"
+            android:label="@string/title_about"
+            android:parentActivityName=".MainActivity" />
+
+    </application>
+
+</manifest>
